@@ -73,7 +73,7 @@ public class CommandmentsBlockListener extends BlockListener {
 		if (from == 10 || from == 11)
 			if (Commandments.checkRules("Environment", ActionType.LAVA_FLOW, event.getBlock().getLocation(), Integer.toString(to)))
 				event.setCancelled(true);
-		if (from == 10 || from == 11)
+		if (from == 8 || from == 9)
 			if (Commandments.checkRules("Environment", ActionType.WATER_FLOW, event.getBlock().getLocation(), Integer.toString(to)))
 				event.setCancelled(true);
 	}

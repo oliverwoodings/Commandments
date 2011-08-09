@@ -40,7 +40,7 @@ public class Commandments extends JavaPlugin {
 	 */
 	public void onEnable() {
 		
-		Util.info("Starting DataLog initiation process...");
+		Util.info("Starting Commandments initiation process...");
 
 		//Set up config and permissions
         PluginManager pm = getServer().getPluginManager();
@@ -95,7 +95,7 @@ public class Commandments extends JavaPlugin {
 			//Check groups
 			boolean inGroup = false;
 			for (String group : rule.excludeGroups)
-				if (Permission.inSingleGroup(loc.getWorld().getName(), player, group)) inGroup = true;
+				if (Permission.inGroup(loc.getWorld().getName(), player, group)) inGroup = true;
 			if (inGroup) continue;
 			
 			//Check pattern
@@ -106,14 +106,6 @@ public class Commandments extends JavaPlugin {
 				matchText = data.substring(matcher.start(), matcher.end());
 			}
 			
-			//Replace text
-			notification = notification.replaceAll("%PLAYER%", player);
-			notification = notification.replaceAll("%WORLD%", loc.getWorld().getName());
-			notification = notification.replaceAll("%MATCH%", matchText);
-			warning = warning.replaceAll("%PLAYER%", player);
-			warning = warning.replaceAll("%WORLD%", loc.getWorld().getName());
-			warning = warning.replaceAll("%MATCH%", matchText);
-			
 			//Replace match text for certain items
 			switch (type) {
 				case BLOCK_BREAK:
@@ -123,6 +115,14 @@ public class Commandments extends JavaPlugin {
 					matchText = BlockUtil.getBlockStringName(matchText);
 					break;
 			}
+			
+			//Replace text
+			notification = notification.replaceAll("%PLAYER%", player);
+			notification = notification.replaceAll("%WORLD%", loc.getWorld().getName());
+			notification = notification.replaceAll("%MATCH%", matchText);
+			warning = warning.replaceAll("%PLAYER%", player);
+			warning = warning.replaceAll("%WORLD%", loc.getWorld().getName());
+			warning = warning.replaceAll("%MATCH%", matchText);
 			
 			//Execute actions
 			if (rule.notify) {

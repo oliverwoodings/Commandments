@@ -8,6 +8,7 @@ import org.bukkit.event.player.PlayerChatEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.event.player.PlayerListener;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
@@ -43,6 +44,11 @@ public class CommandmentsPlayerListener extends PlayerListener {
 	
 	public void onPlayerQuit(PlayerQuitEvent event) {
 		Commandments.checkRules(event.getPlayer(), ActionType.QUIT, event.getPlayer().getLocation(), event.getPlayer().getName());
+	}
+	
+	public void onPlayerKick(PlayerKickEvent event) {
+		if (Commandments.checkRules(event.getPlayer(), ActionType.KICK, event.getPlayer().getLocation(), event.getReason()))
+			event.setCancelled(true);
 	}
 	
 	/**

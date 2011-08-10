@@ -53,11 +53,13 @@ public class Commandments extends JavaPlugin {
         pm.registerEvent(Type.BLOCK_BREAK, blockListener, Event.Priority.Highest, this);
         pm.registerEvent(Type.BLOCK_PLACE, blockListener, Event.Priority.Highest, this);
         pm.registerEvent(Type.BLOCK_BURN, blockListener, Event.Priority.Highest, this);
+        pm.registerEvent(Type.PAINTING_BREAK, blockListener, Event.Priority.Highest, this);
+        pm.registerEvent(Type.PAINTING_PLACE, blockListener, Event.Priority.Highest, this);
         pm.registerEvent(Type.LEAVES_DECAY, blockListener, Event.Priority.Highest, this);
         pm.registerEvent(Type.BLOCK_FORM, blockListener, Event.Priority.Highest, this);
         pm.registerEvent(Type.BLOCK_FROMTO, blockListener, Event.Priority.Highest, this);
         pm.registerEvent(Type.BLOCK_FADE, blockListener, Event.Priority.Highest, this);
-        pm.registerEvent(Type.SIGN_CHANGE, blockListener, Event.Priority.Highest, this);
+        pm.registerEvent(Type.SIGN_CHANGE, blockListener, Event.Priority.Lowest, this);
         pm.registerEvent(Type.PLAYER_COMMAND_PREPROCESS, playerListener, Event.Priority.Lowest, this);
         pm.registerEvent(Type.PLAYER_JOIN, playerListener, Event.Priority.Highest, this);
         pm.registerEvent(Type.PLAYER_QUIT, playerListener, Event.Priority.Highest, this);
@@ -66,6 +68,7 @@ public class Commandments extends JavaPlugin {
         pm.registerEvent(Type.PLAYER_INTERACT, playerListener, Event.Priority.Highest, this);
         pm.registerEvent(Type.PLAYER_DROP_ITEM, playerListener, Event.Priority.Highest, this);
         pm.registerEvent(Type.PLAYER_PICKUP_ITEM, playerListener, Event.Priority.Highest, this);
+        pm.registerEvent(Type.PLAYER_KICK, playerListener, Event.Priority.Highest, this);
         pm.registerEvent(Type.ENTITY_EXPLODE, entityListener, Event.Priority.Highest, this);
         
         Util.info("Version " + version + " enabled!");
@@ -112,6 +115,7 @@ public class Commandments extends JavaPlugin {
 				case BLOCK_PLACE:
 				case ITEM_DROP:
 				case ITEM_PICKUP:
+					if (matchText == "") matchText = data;
 					matchText = BlockUtil.getBlockStringName(matchText);
 					break;
 			}

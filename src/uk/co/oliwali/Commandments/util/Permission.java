@@ -35,7 +35,7 @@ public class Permission {
         	permissionsEx = PermissionsEx.getPermissionManager();
         	Util.info("Using PermissionsEx for user permissions");
 		}
-        else if (Bukkit.getServer().getPluginManager().isPluginEnabled("PermissionsEx")) {
+        else if (Bukkit.getServer().getPluginManager().isPluginEnabled("Permissions")) {
         	permissionPlugin = ((Permissions)plugin.getServer().getPluginManager().getPlugin("Permissions")).getHandler();
         	handler = PermissionPlugin.PERMISSIONS;
         	Util.info("Using Permissions for user permissions");

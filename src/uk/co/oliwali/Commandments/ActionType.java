@@ -36,7 +36,8 @@ public enum ActionType {
 	ITEM_DROP("item-drop"),
 	ITEM_PICKUP("item-pickup"),
 	LAVA_FLOW("lava-flow"),
-	WATER_FLOW("water-flow");
+	WATER_FLOW("water-flow"),
+	KICK("kick");
 	
 	private String name;
 	

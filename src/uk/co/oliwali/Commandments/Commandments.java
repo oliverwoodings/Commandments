@@ -79,10 +79,10 @@ public class Commandments extends JavaPlugin {
 	 * Checks the event against currently loaded rules
 	 * @return true if event is to be cancelled
 	 */
-	public static boolean checkRules(Player player, ActionType type, Location loc, String data) {
+	public static boolean checkRules(Player player, EventType type, Location loc, String data) {
 		return checkRules(player.getName(), type, loc, data);
 	}
-	public static boolean checkRules(String player, ActionType type, Location loc, String data) {
+	public static boolean checkRules(String player, EventType type, Location loc, String data) {
 		
 		//Check rules
 		for (Rule rule : Config.Rules) {

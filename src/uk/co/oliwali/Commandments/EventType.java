@@ -8,7 +8,7 @@ import java.util.Map;
  * Enumeration class representing all the different actions that Commandments can handle
  * @author oliverw92
  */
-public enum ActionType {
+public enum EventType {
 	
 	BLOCK_BREAK("block-break"),
 	BLOCK_PLACE("block-place"),
@@ -41,16 +41,16 @@ public enum ActionType {
 	
 	private String name;
 	
-	private static final Map<String, ActionType> nameMapping = new HashMap<String, ActionType>();
+	private static final Map<String, EventType> nameMapping = new HashMap<String, EventType>();
 	
 	static {
 		//Mapping to enable quick finding of ActionTypes by name
-		for (ActionType type : EnumSet.allOf(ActionType.class)) {
+		for (EventType type : EnumSet.allOf(EventType.class)) {
 			nameMapping.put(type.name, type);
 		}
 	}
 	
-	private ActionType(String name) {
+	private EventType(String name) {
 		this.name = name;
 	}
 	
@@ -67,7 +67,7 @@ public enum ActionType {
 	 * @param name DataType config name to search for
 	 * @return {@link DataType}
 	 */
-	public static ActionType fromName(String name) {
+	public static EventType fromName(String name) {
 		return nameMapping.get(name);
 	}
 

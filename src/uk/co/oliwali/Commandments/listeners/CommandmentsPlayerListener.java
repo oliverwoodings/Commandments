@@ -14,40 +14,40 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 
 import uk.co.oliwali.Commandments.Commandments;
-import uk.co.oliwali.Commandments.ActionType;
+import uk.co.oliwali.Commandments.EventType;
 
 public class CommandmentsPlayerListener extends PlayerListener {
 	
 	public void onPlayerChat(PlayerChatEvent event) {
-		if (Commandments.checkRules(event.getPlayer(), ActionType.CHAT, event.getPlayer().getLocation(), event.getMessage()))
+		if (Commandments.checkRules(event.getPlayer(), EventType.CHAT, event.getPlayer().getLocation(), event.getMessage()))
 			event.setCancelled(true);
 	}
 	
 	public void onPlayerCommandPreprocess(PlayerCommandPreprocessEvent event) {
 		Player player = event.getPlayer();
 		Location loc  = player.getLocation();
-		if (Commandments.checkRules(player, ActionType.COMMAND, loc, event.getMessage()))
+		if (Commandments.checkRules(player, EventType.COMMAND, loc, event.getMessage()))
 			event.setCancelled(true);
 	}
 	
 	public void onPlayerTeleport(PlayerTeleportEvent event) {
 		Location from = event.getFrom();
 		Location to   = event.getTo();
-		if (Commandments.checkRules(event.getPlayer(), ActionType.TELEPORT, from, to.getWorld().getName() + ": " + to.getX() + ", " + to.getY() + ", " + to.getZ()))
+		if (Commandments.checkRules(event.getPlayer(), EventType.TELEPORT, from, to.getWorld().getName() + ": " + to.getX() + ", " + to.getY() + ", " + to.getZ()))
 			event.setCancelled(true);
 	}
 	
 	public void onPlayerJoin(PlayerJoinEvent event) {
-		if (Commandments.checkRules(event.getPlayer(), ActionType.JOIN, event.getPlayer().getLocation(), event.getPlayer().getName()))
+		if (Commandments.checkRules(event.getPlayer(), EventType.JOIN, event.getPlayer().getLocation(), event.getPlayer().getName()))
 			event.getPlayer().kickPlayer("You have been denied from this server!");
 	}
 	
 	public void onPlayerQuit(PlayerQuitEvent event) {
-		Commandments.checkRules(event.getPlayer(), ActionType.QUIT, event.getPlayer().getLocation(), event.getPlayer().getName());
+		Commandments.checkRules(event.getPlayer(), EventType.QUIT, event.getPlayer().getLocation(), event.getPlayer().getName());
 	}
 	
 	public void onPlayerKick(PlayerKickEvent event) {
-		if (Commandments.checkRules(event.getPlayer(), ActionType.KICK, event.getPlayer().getLocation(), event.getReason()))
+		if (Commandments.checkRules(event.getPlayer(), EventType.KICK, event.getPlayer().getLocation(), event.getReason()))
 			event.setCancelled(true);
 	}
 	
@@ -65,19 +65,19 @@ public class CommandmentsPlayerListener extends PlayerListener {
 	
 			switch (block.getType()) {
 				case CHEST:
-					if (event.getAction() == Action.RIGHT_CLICK_BLOCK && Commandments.checkRules(player, ActionType.OPEN_CHEST, loc, ""))
+					if (event.getAction() == Action.RIGHT_CLICK_BLOCK && Commandments.checkRules(player, EventType.OPEN_CHEST, loc, ""))
 						event.setCancelled(true);
 					break;
 				case WOODEN_DOOR:
-					if (Commandments.checkRules(player, ActionType.DOOR_INTERACT, loc, ""))
+					if (Commandments.checkRules(player, EventType.DOOR_INTERACT, loc, ""))
 						event.setCancelled(true);
 					break;
 				case LEVER:
-					if (Commandments.checkRules(player, ActionType.LEVER, loc, ""))
+					if (Commandments.checkRules(player, EventType.LEVER, loc, ""))
 						event.setCancelled(true);
 					break;
 				case STONE_BUTTON:
-					if (Commandments.checkRules(player, ActionType.STONE_BUTTON, loc, ""))
+					if (Commandments.checkRules(player, EventType.STONE_BUTTON, loc, ""))
 						event.setCancelled(true);
 					break;
 			}
@@ -85,15 +85,15 @@ public class CommandmentsPlayerListener extends PlayerListener {
 			if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
 				switch (player.getItemInHand().getType()) {
 					case FLINT_AND_STEEL:
-						if (Commandments.checkRules(player, ActionType.FLINT_AND_STEEL, loc, ""))
+						if (Commandments.checkRules(player, EventType.FLINT_AND_STEEL, loc, ""))
 							event.setCancelled(true);
 						break;
 					case LAVA_BUCKET:
-						if (Commandments.checkRules(player, ActionType.LAVA_BUCKET, loc, ""))
+						if (Commandments.checkRules(player, EventType.LAVA_BUCKET, loc, ""))
 							event.setCancelled(true);
 						break;
 					case WATER_BUCKET:
-						if (Commandments.checkRules(player, ActionType.WATER_BUCKET, loc, ""))
+						if (Commandments.checkRules(player, EventType.WATER_BUCKET, loc, ""))
 							event.setCancelled(true);
 						break;
 				}

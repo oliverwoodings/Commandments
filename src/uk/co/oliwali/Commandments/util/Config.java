@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.bukkit.util.config.Configuration;
 
-import uk.co.oliwali.Commandments.ActionType;
+import uk.co.oliwali.Commandments.EventType;
 import uk.co.oliwali.Commandments.Commandments;
 import uk.co.oliwali.Commandments.Rule;
 
@@ -58,13 +58,13 @@ public class Config {
 		keys = config.getKeys("rules");
 		outer:
 		for (String name : keys) {
-			List<ActionType> events = new ArrayList<ActionType>();
+			List<EventType> events = new ArrayList<EventType>();
 			for (String event : config.getStringList("rules." + name + ".events", null)) {
-				if (ActionType.fromName(event) == null) {
+				if (EventType.fromName(event) == null) {
 					Util.severe("Invalid event name found in rule '" + name + "': " + event);
 					continue outer;
 				}
-				events.add(ActionType.fromName(event));
+				events.add(EventType.fromName(event));
 			}
 			if (events.size() == 0) {
 				Util.severe("No valid events supplied in rule '" + name + "'");

@@ -11,7 +11,7 @@ import java.util.List;
 public class Rule {
 	
 	public final String name;
-	public final List<ActionType> events;
+	public final List<EventType> events;
 	public final String pattern;
 	public final List<String> worlds;
 	public final List<String> excludeGroups;
@@ -26,7 +26,7 @@ public class Rule {
 	 * Creates a new representation of a rule
 	 * 
 	 * @param name name of the rule
-	 * @param events list of {@link ActionType} to check against
+	 * @param events list of {@link EventType} to check against
 	 * @param pattern regex pattern to check data against
 	 * @param worlds worlds this rule is to be applied to
 	 * @param excludeGroups groups that do not obey this rule
@@ -37,7 +37,7 @@ public class Rule {
 	 * @param kick whether or not to kick the offender
 	 * @param deny whether or not to deny the action
 	 */
-	public Rule(String name, List<ActionType> events, String pattern, List<String> worlds, List<String> excludeGroups, String notificationMsg, String warningMsg, boolean notify, boolean warn, boolean kick, boolean deny) {
+	public Rule(String name, List<EventType> events, String pattern, List<String> worlds, List<String> excludeGroups, String notificationMsg, String warningMsg, boolean notify, boolean warn, boolean kick, boolean deny) {
 		this.name = name;
 		this.events = events;
 		this.pattern = pattern;

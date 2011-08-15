@@ -2,7 +2,6 @@ package uk.co.oliwali.Commandments.listeners;
 
 import org.bukkit.Location;
 import org.bukkit.block.Block;
-import org.bukkit.entity.Painting;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockBurnEvent;
@@ -13,10 +12,6 @@ import org.bukkit.event.block.BlockListener;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.block.LeavesDecayEvent;
 import org.bukkit.event.block.SignChangeEvent;
-import org.bukkit.event.painting.PaintingBreakByEntityEvent;
-import org.bukkit.event.painting.PaintingBreakEvent;
-import org.bukkit.event.painting.PaintingPlaceEvent;
-import org.bukkit.event.painting.PaintingBreakEvent.RemoveCause;
 
 import uk.co.oliwali.Commandments.Commandments;
 import uk.co.oliwali.Commandments.ActionType;
@@ -33,23 +28,6 @@ public class CommandmentsBlockListener extends BlockListener {
 	public void onBlockPlace(BlockPlaceEvent event) {
 		Block block   = event.getBlock();
 		if (Commandments.checkRules(event.getPlayer(), ActionType.BLOCK_PLACE, block.getLocation(), BlockUtil.getBlockString(block)))
-			event.setCancelled(true);
-	}
-	
-	public void onPaintingBreak(PaintingBreakEvent event) {
-		if (event.isCancelled()) return;
-		Painting painting = event.getPainting();
-		if (event.getCause() == RemoveCause.ENTITY) {
-			PaintingBreakByEntityEvent e = (PaintingBreakByEntityEvent)event;
-			if (e.getRemover() instanceof Player && Commandments.checkRules((Player)e.getRemover(), ActionType.BLOCK_BREAK, painting.getLocation(), "321"))
-				event.setCancelled(true);
-		}
-	}
-	
-	public void onPaintingPlace(PaintingPlaceEvent event) {
-		if (event.isCancelled()) return;
-		Painting painting = event.getPainting();
-		if (Commandments.checkRules(event.getPlayer(), ActionType.BLOCK_PLACE, painting.getLocation(), "321"))
 			event.setCancelled(true);
 	}
 	

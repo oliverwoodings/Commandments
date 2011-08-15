@@ -53,8 +53,6 @@ public class Commandments extends JavaPlugin {
         pm.registerEvent(Type.BLOCK_BREAK, blockListener, Event.Priority.Highest, this);
         pm.registerEvent(Type.BLOCK_PLACE, blockListener, Event.Priority.Highest, this);
         pm.registerEvent(Type.BLOCK_BURN, blockListener, Event.Priority.Highest, this);
-        pm.registerEvent(Type.PAINTING_BREAK, blockListener, Event.Priority.Highest, this);
-        pm.registerEvent(Type.PAINTING_PLACE, blockListener, Event.Priority.Highest, this);
         pm.registerEvent(Type.LEAVES_DECAY, blockListener, Event.Priority.Highest, this);
         pm.registerEvent(Type.BLOCK_FORM, blockListener, Event.Priority.Highest, this);
         pm.registerEvent(Type.BLOCK_FROMTO, blockListener, Event.Priority.Highest, this);
@@ -70,6 +68,8 @@ public class Commandments extends JavaPlugin {
         pm.registerEvent(Type.PLAYER_PICKUP_ITEM, playerListener, Event.Priority.Highest, this);
         pm.registerEvent(Type.PLAYER_KICK, playerListener, Event.Priority.Highest, this);
         pm.registerEvent(Type.ENTITY_EXPLODE, entityListener, Event.Priority.Highest, this);
+        pm.registerEvent(Type.PAINTING_BREAK, entityListener, Event.Priority.Highest, this);
+        pm.registerEvent(Type.PAINTING_PLACE, entityListener, Event.Priority.Highest, this);
         
         Util.info("Version " + version + " enabled!");
         
